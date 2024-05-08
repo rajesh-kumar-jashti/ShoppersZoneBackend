@@ -9,6 +9,7 @@ const cors = require('cors');
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
 require("dotenv").config();
+const BASE_URL = process.env.BASE_URL
 
 
 app.use(express.json())
@@ -36,7 +37,7 @@ app.use('/images', express.static('upload/images'))
 app.post('/upload', upload.single('product'),(req,res)=>{
     res.json({
         success: 1,
-        image_url: `http://localhost:${port}/images/${req.file.filename}`
+        image_url: `${BASE_URL}/images/${req.file.filename}`
     })
 })
 
